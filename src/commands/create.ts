@@ -1,5 +1,5 @@
 import { CliCommand } from '../interfaces.js';
-import { CommandLineOptions, OptionDefinition } from 'command-line-args';
+import { OptionDefinition } from 'command-line-args';
 import inquirer from 'inquirer';
 import fs from 'fs-extra';
 import logSymbols from 'log-symbols';

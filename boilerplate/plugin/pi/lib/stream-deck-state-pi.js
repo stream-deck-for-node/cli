@@ -1,3 +1,7 @@
+/*
+* Author: Francesco Saverio Cannizzaro (fcannizzaro)
+*/
+
 let ws, registerEvent, info, init;
 
 const state = {};
