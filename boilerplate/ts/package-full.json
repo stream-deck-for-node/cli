@@ -1,0 +1,29 @@
+{
+  "private": true,
+  "name": "{{uuid}}",
+  "version": "1.0.0",
+  "author": "{{author}}",
+  "main": "./dist/index.js",
+  "bin": "./dist/index.js",
+  "scripts": {
+    "start": "npx ts-node ./src/index.ts -debug {{uuid}}",
+    "build": "npm run build:ts && npm run build:bin",
+    "build:ts": "npx tsc -outDir dist",
+    "build:bin": "npx pkg package.json --compress GZip -o plugin/{{uuid}}.exe"
+  },
+  "dependencies": {
+    "elgato-stream-deck-sdk": "^1.0.0"
+  },
+  "pkg": {
+    "assets": "media/*",
+    "targets": [
+      "node16-windows-x64"
+    ]
+  },
+  "devDependencies": {
+    "ts-node": "^10.4.0",
+    "@types/node": "^16.11.12",
+    "typescript": "^4.5.3",
+    "browserify": "^17.0.0"
+  }
+}

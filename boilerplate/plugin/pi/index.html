@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<!--suppress HtmlFormInputWithoutLabel -->
+<html lang="en">
+    <head>
+        <title>Settings</title>
+        <meta charset="utf-8">
+        <script src="stream-deck-state-pi.js"></script>
+        <link rel="stylesheet" href="sdpi.css">
+    </head>
+    <body>
+        <div class="sdpi-wrapper">
+            <div id="{{uuid}}.sample-action" class="hidden isAction">
+                <div class="sdpi-item">
+                    <div class="sdpi-item-label">Field</div>
+                    <textarea class="sdProperty" id="field" oninput="setSettings()"></textarea>
+                </div>
+            </div>
+            <!-- other settings blocks here -->
+        </div>
+        <script src="main.js"></script>
+    </body>
+</html>

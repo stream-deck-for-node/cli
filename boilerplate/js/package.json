@@ -1,0 +1,17 @@
+{
+  "private": true,
+  "name": "{{uuid}}",
+  "version": "1.0.0",
+  "author": "{{author}}",
+  "main": "./src/index.js",
+  "scripts": {
+    "start": "node ./src/index.js -debug {{uuid}}",
+    "build": "npx browserify --node --ignore-missing src/index.js -o ./plugin/plugin.bundle.js"
+  },
+  "dependencies": {
+    "elgato-stream-deck-sdk": "^1.0.0"
+  },
+  "devDependencies": {
+    "browserify": "^17.0.0"
+  }
+}

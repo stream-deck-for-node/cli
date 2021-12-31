@@ -1,0 +1,35 @@
+{
+  "UUID": "{{uuid}}",
+  "Name": "{{name}}",
+  "Author": "{{author}}",
+  "Description": "{{description}}",
+  "Icon": "./icons/pluginIcon",
+  "Version": "1.0.0",
+  "SDKVersion": 2,
+  "Software": {
+    "MinimumVersion": "5.0"
+  },
+  "OS": [
+    {
+      "Platform": "windows",
+      "MinimumVersion": "10"
+    }
+  ],
+  "Category": "{{category}}",
+  "CategoryIcon": "icons/category",
+  "CodePathWin": "{{uuid}}.exe",
+  "CodePathMac": "{{uuid}}",
+  "Actions": [
+    {
+      "Icon": "icons/actionIcon",
+      "Name": "Sample Action",
+      "States": [
+        {
+          "Image": "icons/actionState"
+        }
+      ],
+      "Tooltip": "Sample Action",
+      "UUID": "{{uuid}}.sample-action"
+    }
+  ]
+}
