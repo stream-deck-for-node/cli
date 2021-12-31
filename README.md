@@ -3,6 +3,8 @@
 CLI utility to create / link / unlink / develop / package
 a [stream deck plugin in Node.js](https://stream-deck-for-node.dev/cli)
 
+[![Build status](https://ci.appveyor.com/api/projects/status/im247e4qbk754pdj/branch/main?svg=true)](https://ci.appveyor.com/project/fcannizzaro/cli/branch/main)
+
 ## Installation
 
 ```shell
