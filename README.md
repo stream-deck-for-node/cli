@@ -3,6 +3,12 @@
 CLI utility to create / link / unlink / develop / package
 a [stream deck plugin in Node.js](https://stream-deck-for-node.dev/cli)
 
+## Installation
+
+```shell
+npm i -g @stream-deck-for-node/cli
+```
+
 ## Supported OS
 
 - [x] windows

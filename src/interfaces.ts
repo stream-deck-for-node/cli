@@ -1,31 +1,31 @@
-import {CommandLineOptions} from "command-line-args";
+import { CommandLineOptions, OptionDefinition } from 'command-line-args';
 
 export interface CliCommand {
 
-    definitions: any[]
+    definitions: OptionDefinition[];
 
-    execute(args: CommandLineOptions): void
+    execute(args: CommandLineOptions): void;
 
 }
 
 interface State {
-    Image: string
+    Image: string;
 }
 
 interface Action {
-    Icon: string
-    Name: string
-    States: State[]
-    SupportedInMultiActions: boolean
-    Tooltip: string
-    UUID: string
+    Icon: string;
+    Name: string;
+    States: State[];
+    SupportedInMultiActions: boolean;
+    Tooltip: string;
+    UUID: string;
 }
 
 export interface PluginManifest {
-    Name: string
-    Description: string
-    CodePath?: string
-    CodePathWin?: string
-    CodePathMac?: string
-    Actions: Action[]
+    Name: string;
+    Description: string;
+    CodePath?: string;
+    CodePathWin?: string;
+    CodePathMac?: string;
+    Actions: Action[];
 }
