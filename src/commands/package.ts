@@ -29,9 +29,9 @@ export default class PackageCommand implements CliCommand {
 
                 const uuid = getUUID(manifest);
                 const pluginDirectory = join(PluginPath, uuid + '.sdPlugin');
-                const { stdout, stderr } = await exec(`${dt} -b -i ${pluginDirectory} -o ${cwd}`);
+                const { stdout } = await exec(`${dt} -b -i ${pluginDirectory} -o ${cwd}`);
 
-                stderr?.on('data', (data) => {
+                stdout?.on('data', (data) => {
                     if (data.includes('successfully exported')) {
                         console.log(logSymbols.success, 'Plugin package exported');
                     }
@@ -39,7 +39,8 @@ export default class PackageCommand implements CliCommand {
 
                 stdout?.on('data', (data) => {
                     if (data.includes('Error:')) {
-                        console.log(logSymbols.error, 'Cannot export the plugin\'s package');
+                        console.log(logSymbols.error, 'Cannot export the plugin\'s package\n');
+                        console.log(data);
                     }
                 });
 

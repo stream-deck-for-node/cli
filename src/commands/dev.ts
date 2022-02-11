@@ -94,6 +94,7 @@ export default class DevCommand implements CliCommand {
 
                 process.stdin.on('data', async () => {
                     process.stdin.setRawMode(false);
+                    manifest = await parseManifest(cwd);
                     await this.revertManifest(cwd, manifest, initialCP);
                     await killStreamDeckApp();
                     await fs.rm(join(cwd, debugPlugin));

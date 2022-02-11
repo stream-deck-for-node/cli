@@ -1,7 +1,7 @@
 export const help = [
   {
     header: 'Stream Deck Node.js CLI',
-    content: 'Everything needed to create a Stream Deck\'s plugins in Node.js'
+    content: 'Everything needed to create a Stream Deck\'s plugin in Node.js'
   },
   {
     header: 'Synopsis',
