@@ -31,7 +31,7 @@ Command List
   link      Create a symlink between your development code and the Elgato plugins directory.
   unlink    Remove (if exists) the symlink created with the link command.
   dev       Temporary modify the manifest.json using a debug-plugin for a faster development.
-  package   Generate a .streamDeckPlugin using the Elgato's DistributionTool.
+  package   Generate a .streamDeckPlugin using the Elgato DistributionTool.
 
 dev options
 
