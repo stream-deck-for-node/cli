@@ -76,7 +76,7 @@ export default class CreateCommand implements CliCommand {
             {
                 type: 'list',
                 name: 'package',
-                message: 'Package Type (see https://stream-deck-for-node.dev/packaging)',
+                message: 'Package Type (see https://stream-deck-for-node.netlify.app/#/?id=packaging)',
                 default: 0,
                 choices: [{ name: 'minimal (recommended)', value: 'minimal' }, 'full']
             }
@@ -134,7 +134,7 @@ export default class CreateCommand implements CliCommand {
         if (choices.package === 'minimal') {
             spinner.start('Downloading minimal-plugin-binary...');
             await pipeline(
-              got.stream('https://github.com/Stream-Deck-for-Node-js/minimal-plugin-binary/releases/download/1.0.1/BasePluginBinary.exe'),
+              got.stream('https://github.com/stream-deck-for-node/minimal-plugin-binary/releases/download/1.0.1/BasePluginBinary.exe'),
               createWriteStream(join(base, `plugin/${choices.uuid}.exe`))
             );
             spinner.succeed('Base plugin binary downloaded');

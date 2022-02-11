@@ -9,6 +9,6 @@
     "build": "npx ncc build -m ./src/index.js -o ./plugin"
   },
   "dependencies": {
-    "elgato-stream-deck-sdk": "^1.0.0"
+    "@stream-deck-for-node/sdk": "^1.0.0"
   }
 }

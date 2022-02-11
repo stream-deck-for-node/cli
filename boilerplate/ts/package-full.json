@@ -12,7 +12,7 @@
     "build:bin": "npx pkg package.json --compress GZip -o plugin/{{uuid}}.exe"
   },
   "dependencies": {
-    "elgato-stream-deck-sdk": "^1.0.0"
+    "@stream-deck-for-node/sdk": "^1.0.0"
   },
   "pkg": {
     "targets": [

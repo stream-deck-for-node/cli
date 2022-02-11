@@ -38,7 +38,7 @@ export default class DevCommand implements CliCommand {
         }
 
         await pipeline(
-          got.stream(`http://127.0.0.1:8080/dist/${debugPluginBinary}`),
+          got.stream(`https://github.com/stream-deck-for-node/development-plugin/releases/download/1.0.0/${debugPluginBinary}`),
           createWriteStream(debugPluginBinary)
         );
 
@@ -107,7 +107,7 @@ export default class DevCommand implements CliCommand {
             }
 
         } else {
-            console.log('error');
+            console.log(logSymbols.error, 'Error starting the dev command');
         }
 
     }

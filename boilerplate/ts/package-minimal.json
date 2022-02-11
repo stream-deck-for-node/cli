@@ -10,7 +10,7 @@
     "build": "npx ncc build -m ./src/index.ts -o ./plugin"
   },
   "dependencies": {
-    "elgato-stream-deck-sdk": "^1.0.0"
+    "@stream-deck-for-node/sdk": "^1.0.0"
   },
   "devDependencies": {
     "ts-node": "^10.4.0",
