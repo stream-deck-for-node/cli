@@ -28,7 +28,7 @@ export const help = [
       },
       {
         name: 'package',
-        summary: 'Generate a .streamDeckPlugin using the Elgato\'s DistributionTool.'
+        summary: 'Generate a .streamDeckPlugin using the Elgato DistributionTool.'
       }
     ]
   },
