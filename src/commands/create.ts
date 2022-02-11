@@ -134,7 +134,7 @@ export default class CreateCommand implements CliCommand {
         if (choices.package === 'minimal') {
             spinner.start('Downloading minimal-plugin-binary...');
             await pipeline(
-              got.stream('https://github.com/Stream-Deck-for-Node-js/minimal-plugin-binary/releases/download/1.0.0/BasePluginBinary.exe'),
+              got.stream('https://github.com/Stream-Deck-for-Node-js/minimal-plugin-binary/releases/download/1.0.1/BasePluginBinary.exe'),
               createWriteStream(join(base, `plugin/${choices.uuid}.exe`))
             );
             spinner.succeed('Base plugin binary downloaded');
