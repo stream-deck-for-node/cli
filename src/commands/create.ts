@@ -147,7 +147,6 @@ export default class CreateCommand implements CliCommand {
         }
 
         spinner.start('Installing node modules...');
-        await execAsync('npm link elgato-stream-deck-sdk', { cwd: base });
         await execAsync('npm i', { cwd: base });
 
         spinner.succeed('Node modules installed');
