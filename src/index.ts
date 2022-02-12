@@ -8,6 +8,7 @@ import PackageCommand from './commands/package.js';
 import CreateCommand from './commands/create.js';
 import commandLineUsage from 'command-line-usage';
 import { help } from './help.js';
+import got from 'got';
 
 const mainDefinitions = [
   { name: 'command', defaultOption: true }
@@ -32,4 +33,3 @@ if (handler) {
 } else {
   console.log(commandLineUsage(help));
 }
-

@@ -1,4 +1,4 @@
-import { CliCommand, PluginManifest } from '../interfaces.js';
+import { CliCommand, GithubRelease, PluginManifest } from '../interfaces.js';
 import { CommandLineOptions, OptionDefinition } from 'command-line-args';
 import {
     checkApplicationInPath,
@@ -8,7 +8,7 @@ import {
     reloadStreamDeckApplication,
     updateManifest
 } from '../util.js';
-import { debugPlugin, debugPluginBinary } from '../constant.js';
+import { debugPlugin, debugPluginBinary, DEV_PLUGIN_RELEASE } from '../constant.js';
 import got from 'got';
 import { createWriteStream } from 'fs';
 import { promisify } from 'node:util';
@@ -37,8 +37,12 @@ export default class DevCommand implements CliCommand {
             return;
         }
 
+        const latest: GithubRelease = await got.get(DEV_PLUGIN_RELEASE, {
+            resolveBodyOnly: true
+        }).json();
+
         await pipeline(
-          got.stream(`https://github.com/stream-deck-for-node/development-plugin/releases/download/1.0.0/${debugPluginBinary}`),
+          got.stream(latest.assets.find(it => it.name === debugPlugin)?.browser_download_url),
           createWriteStream(debugPluginBinary)
         );
 

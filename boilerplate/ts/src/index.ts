@@ -1,5 +1,5 @@
 import './actions/sample';
-import { StreamDeck } from 'elgato-stream-deck-sdk';
+import { StreamDeck } from '@stream-deck-for-node/sdk';
 
 interface PluginSettings {
     sample: string;

@@ -1,5 +1,5 @@
 const {SampleAction} = require("./actions/sample");
-const {StreamDeck} = require("elgato-stream-deck-sdk");
+const {StreamDeck} = require("@stream-deck-for-node/sdk");
 
 const sd = new StreamDeck({
     actions: {

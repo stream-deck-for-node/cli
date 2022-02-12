@@ -29,3 +29,5 @@ export interface PluginManifest {
     CodePathMac?: string;
     Actions: Action[];
 }
+
+export type GithubRelease = Record<string, Array<Record<string, string>>>

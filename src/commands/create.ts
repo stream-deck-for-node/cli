@@ -1,4 +1,4 @@
-import { CliCommand } from '../interfaces.js';
+import { CliCommand, GithubRelease } from '../interfaces.js';
 import { OptionDefinition } from 'command-line-args';
 import inquirer from 'inquirer';
 import fs from 'fs-extra';
@@ -15,6 +15,7 @@ import ora from 'ora';
 import LinkCommand from './link.js';
 import chalk from 'chalk';
 import { checkApplicationInPath } from '../util.js';
+import { DEV_PLUGIN_RELEASE, MINIMAL_PLUGIN_RELEASE } from '../constant.js';
 
 const pipeline = promisify(stream.pipeline);
 
@@ -133,8 +134,13 @@ export default class CreateCommand implements CliCommand {
 
         if (choices.package === 'minimal') {
             spinner.start('Downloading minimal-plugin-binary...');
+
+            const latest: GithubRelease = await got.get(MINIMAL_PLUGIN_RELEASE, {
+                resolveBodyOnly: true
+            }).json();
+
             await pipeline(
-              got.stream('https://github.com/stream-deck-for-node/minimal-plugin-binary/releases/download/1.0.1/BasePluginBinary.exe'),
+              got.stream(latest.assets[0].browser_download_url),
               createWriteStream(join(base, `plugin/${choices.uuid}.exe`))
             );
             spinner.succeed('Base plugin binary downloaded');
