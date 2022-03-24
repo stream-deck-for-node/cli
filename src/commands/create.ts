@@ -1,4 +1,4 @@
-import { CliCommand, GithubRelease } from '../interfaces.js';
+import { CliCommand } from '../interfaces.js';
 import { OptionDefinition } from 'command-line-args';
 import inquirer from 'inquirer';
 import fs from 'fs-extra';
@@ -7,17 +7,11 @@ import { dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import Mustache from 'mustache';
 import { exec } from 'node:child_process';
-import util, { promisify } from 'node:util';
-import got from 'got';
-import stream from 'node:stream';
-import { createWriteStream } from 'fs';
+import util from 'node:util';
 import ora from 'ora';
 import LinkCommand from './link.js';
 import chalk from 'chalk';
 import { checkApplicationInPath } from '../util.js';
-import { DEV_PLUGIN_RELEASE, MINIMAL_PLUGIN_RELEASE } from '../constant.js';
-
-const pipeline = promisify(stream.pipeline);
 
 const execAsync = util.promisify(exec);
 
@@ -73,13 +67,6 @@ export default class CreateCommand implements CliCommand {
                 name: 'category',
                 default: 'Custom',
                 message: 'Category'
-            },
-            {
-                type: 'list',
-                name: 'package',
-                message: 'Package Type (see https://stream-deck-for-node.netlify.app/#/?id=packaging)',
-                default: 0,
-                choices: [{ name: 'minimal (recommended)', value: 'minimal' }, 'full']
             }
         ]);
 
@@ -111,7 +98,7 @@ export default class CreateCommand implements CliCommand {
 
         if (choices.template === 'TypeScript') {
 
-            const templatePackageJson = await fs.readFile(join(__dirname, `../../boilerplate/ts/package-${choices.package}.json`));
+            const templatePackageJson = await fs.readFile(join(__dirname, `../../boilerplate/ts/package.json`));
             await fs.writeFile(base + '/package.json', Mustache.render(templatePackageJson.toString(), choices));
 
             await fs.copy(join(__dirname, '../../boilerplate/ts/src'), join(base, 'src'), {
@@ -131,20 +118,6 @@ export default class CreateCommand implements CliCommand {
         }
 
         spinner.succeed('Boilerplate generated');
-
-        if (choices.package === 'minimal') {
-            spinner.start('Downloading minimal-plugin-binary...');
-
-            const latest: GithubRelease = await got.get(MINIMAL_PLUGIN_RELEASE, {
-                resolveBodyOnly: true
-            }).json();
-
-            await pipeline(
-              got.stream(latest.assets[0].browser_download_url),
-              createWriteStream(join(base, `plugin/${choices.uuid}.exe`))
-            );
-            spinner.succeed('Base plugin binary downloaded');
-        }
 
         spinner.start('Installing node modules...');
         await execAsync('npm i', { cwd: base });

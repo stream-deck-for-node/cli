@@ -51,7 +51,7 @@ export default class LinkCommand implements CliCommand {
                 if (stats.isSymbolicLink()) {
                     rmdirSync(pluginDirectory);
                     console.log(logSymbols.success, 'Plugin unlinked');
-                    await reloadStreamDeckApplication();
+                    await reloadStreamDeckApplication(uuid);
                 } else {
                     console.log(logSymbols.error, 'Plugin is not a symlink');
                 }
@@ -64,7 +64,7 @@ export default class LinkCommand implements CliCommand {
 
                 await symlinkDir(cwd, pluginDirectory);
                 console.log(logSymbols.success, 'Plugin linked');
-                await reloadStreamDeckApplication();
+                await reloadStreamDeckApplication(uuid);
             }
         }
 

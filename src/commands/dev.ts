@@ -82,11 +82,13 @@ export default class DevCommand implements CliCommand {
                 manifest.CodePathMac = undefined;
             }
 
+            const uuid = manifest["uuid"].toString();
+
             await fs.copy(debugPluginBinary, join(cwd, debugPlugin));
 
             await updateManifest(cwd, manifest);
 
-            await reloadStreamDeckApplication();
+            await reloadStreamDeckApplication(uuid);
 
             console.log(logSymbols.success, 'Updated manifest.json using debug-plugin');
 
@@ -100,7 +102,7 @@ export default class DevCommand implements CliCommand {
                     process.stdin.setRawMode(false);
                     manifest = await parseManifest(cwd);
                     await this.revertManifest(cwd, manifest, initialCP);
-                    await killStreamDeckApp();
+                    await killStreamDeckApp(uuid);
                     await fs.rm(join(cwd, debugPlugin));
                     console.log(logSymbols.success, 'Removed debug-plugin binary');
                     await launchStreamDeckApp();

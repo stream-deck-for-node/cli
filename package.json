@@ -1,6 +1,6 @@
 {
   "name": "@stream-deck-for-node/cli",
-  "version": "1.0.4",
+  "version": "1.0.6",
   "author": "Francesco Saverio Cannizzaro (fcannizzaro)",
   "main": "./dist/index.js",
   "exports": "./dist/index.js",
@@ -58,6 +58,7 @@
     "@types/lodash.pick": "^4.4.6",
     "@types/mustache": "^4.1.2",
     "@types/node": "^17.0.5",
+    "@types/unzipper": "^0.10.5",
     "@typescript-eslint/eslint-plugin": "^5.8.1",
     "@typescript-eslint/parser": "^5.8.1",
     "eslint": "^8.5.0",

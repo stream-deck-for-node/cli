@@ -38,6 +38,4 @@ export const PluginPath = Paths.plugins[platform];
 
 export const DistributionTool = Paths.distributionTool[platform];
 
-export const MINIMAL_PLUGIN_RELEASE = 'https://api.github.com/repos/stream-deck-for-node/minimal-plugin-binary/releases/latest';
-
 export const DEV_PLUGIN_RELEASE = 'https://api.github.com/repos/stream-deck-for-node/development-plugin/releases/latest';
