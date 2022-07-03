@@ -14,7 +14,7 @@ npm i -g @stream-deck-for-node/cli
 ## Supported OS
 
 - [x] windows
-- [ ] mac `(need help)`
+- [ ] mac `(test needed)`
 
 ```shell
 Stream Deck Node.js CLI
@@ -30,12 +30,8 @@ Command List
   create    Generate a new plugin project with a sample action.
   link      Create a symlink between your development code and the Elgato plugins directory.
   unlink    Remove (if exists) the symlink created with the link command.
-  dev       Temporary modify the manifest.json using a debug-plugin for a faster development.
+  dev       Modify the manifest.json using a debug-plugin for a faster development.
   package   Generate a .streamDeckPlugin using the Elgato DistributionTool.
-
-dev options
-
-  -p, --persistent    dev command persistently modifies the manifest.json.
 ```
 
 ## Author

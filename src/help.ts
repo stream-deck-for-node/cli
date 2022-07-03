@@ -24,22 +24,11 @@ export const help = [
       },
       {
         name: 'dev',
-        summary: 'Temporary modify the manifest.json using a debug-plugin for a faster development.'
+        summary: 'Modify the manifest.json using a debug-plugin for a faster development.'
       },
       {
         name: 'package',
         summary: 'Generate a .streamDeckPlugin using the Elgato DistributionTool.'
-      }
-    ]
-  },
-  {
-    header: 'dev options',
-    optionList: [
-      {
-        name: 'persistent',
-        alias: 'p',
-        type: Boolean,
-        description: 'dev command persistently modifies the manifest.json.'
       }
     ]
   }
