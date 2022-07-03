@@ -12,7 +12,7 @@
     "build:bin": "npx pkg package.json --compress GZip -o plugin/{{uuid}}.exe"
   },
   "dependencies": {
-    "@stream-deck-for-node/sdk": "^1.0.0"
+    "@stream-deck-for-node/sdk": "^1.0.14"
   },
   "pkg": {
     "targets": [

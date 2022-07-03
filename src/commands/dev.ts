@@ -1,22 +1,14 @@
-import { CliCommand, GithubRelease, PluginManifest } from '../interfaces.js';
-import { CommandLineOptions, OptionDefinition } from 'command-line-args';
-import {
-    checkApplicationInPath,
-    killStreamDeckApp,
-    launchStreamDeckApp,
-    parseManifest,
-    reloadStreamDeckApplication,
-    updateManifest
-} from '../util.js';
-import { debugPlugin, debugPluginBinary, DEV_PLUGIN_RELEASE } from '../constant.js';
-import got from 'got';
-import { createWriteStream } from 'fs';
-import { promisify } from 'node:util';
-import stream from 'node:stream';
-import fs from 'fs-extra';
-import logSymbols from 'log-symbols';
-import pick from 'lodash.pick';
-import { join } from 'node:path';
+import { CliCommand, GithubRelease } from "../interfaces.js";
+import { OptionDefinition } from "command-line-args";
+import { checkApplicationInPath, parseManifest, reloadStreamDeckApplication, updateManifest } from "../util.js";
+import { debugPlugin, debugPluginBinary, DEV_PLUGIN_RELEASE } from "../constant.js";
+import got from "got";
+import { createWriteStream } from "fs";
+import { promisify } from "node:util";
+import stream from "node:stream";
+import fs from "fs-extra";
+import logSymbols from "log-symbols";
+import { join } from "node:path";
 
 const pipeline = promisify(stream.pipeline);
 
@@ -42,23 +34,15 @@ export default class DevCommand implements CliCommand {
         }).json();
 
         await pipeline(
-          got.stream(latest.assets.find(it => it.name === debugPlugin)?.browser_download_url),
-          createWriteStream(debugPluginBinary)
+            got.stream(latest.assets.find(it => it.name === debugPlugin)?.browser_download_url),
+            createWriteStream(debugPluginBinary)
         );
 
         console.log(logSymbols.success, 'Downloaded prebuilt debug plugin at', debugPluginBinary);
 
     }
 
-    async revertManifest(cwd: string, manifest?: PluginManifest, initialCP: Record<string, string> = {}) {
-        if (!manifest) return;
-        manifest.CodePath = undefined;
-        Object.assign(manifest, initialCP);
-        await updateManifest(cwd, manifest);
-        console.log(logSymbols.success, 'Reverted manifest.json');
-    }
-
-    async execute(args: CommandLineOptions): Promise<void> {
+    async execute(): Promise<void> {
 
         await checkApplicationInPath();
 
@@ -74,7 +58,6 @@ export default class DevCommand implements CliCommand {
         if (manifest) {
 
             await this.downloadDebugPlugin();
-            const initialCP = pick(manifest, 'CodePath', 'CodePathWin', 'CodePathMac');
 
             if (manifest.CodePath !== debugPlugin) {
                 manifest.CodePath = debugPlugin;
@@ -83,34 +66,11 @@ export default class DevCommand implements CliCommand {
             }
 
             const uuid = manifest["uuid"].toString();
-
             await fs.copy(debugPluginBinary, join(cwd, debugPlugin));
-
             await updateManifest(cwd, manifest);
-
             await reloadStreamDeckApplication(uuid);
 
             console.log(logSymbols.success, 'Updated manifest.json using debug-plugin');
-
-            if (!args.persistent) {
-
-                console.log('\n >> Press any key to stop development mode <<\n');
-
-                process.stdin.setRawMode(true);
-
-                process.stdin.on('data', async () => {
-                    process.stdin.setRawMode(false);
-                    manifest = await parseManifest(cwd);
-                    await this.revertManifest(cwd, manifest, initialCP);
-                    await killStreamDeckApp(uuid);
-                    await fs.rm(join(cwd, debugPlugin));
-                    console.log(logSymbols.success, 'Removed debug-plugin binary');
-                    await launchStreamDeckApp();
-                    console.log(logSymbols.success, 'Application reloaded');
-                    process.exit(0);
-                });
-
-            }
 
         } else {
             console.log(logSymbols.error, 'Error starting the dev command');

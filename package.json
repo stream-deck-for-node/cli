@@ -1,6 +1,6 @@
 {
   "name": "@stream-deck-for-node/cli",
-  "version": "1.0.6",
+  "version": "1.0.7",
   "author": "Francesco Saverio Cannizzaro (fcannizzaro)",
   "main": "./dist/index.js",
   "exports": "./dist/index.js",
@@ -47,6 +47,7 @@
     "lodash.pick": "^4.4.0",
     "log-symbols": "^5.1.0",
     "mustache": "^4.2.0",
+    "ora": "^6.1.0",
     "symlink-dir": "^5.0.1"
   },
   "devDependencies": {
