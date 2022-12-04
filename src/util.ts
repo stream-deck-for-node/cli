@@ -4,9 +4,10 @@ import fs from 'fs-extra';
 import fkill from 'fkill';
 import { spawn } from 'node:child_process';
 import logSymbols from 'log-symbols';
-import { Application, debugPlugin, platform } from './constant.js';
+import { Application,ApplicationRef , debugPlugin, platform } from './constant.js';
 import commandExists from 'command-exists';
 import chalk from 'chalk';
+import {exec} from "child_process";
 
 if (!['darwin', 'win32'].includes(process.platform)) {
   console.log('This platform is not supported!');
@@ -68,9 +69,30 @@ export const reloadStreamDeckApplication = async (uuid: string) => {
   console.log(logSymbols.success, 'Application reloaded');
 };
 
+
+/**
+ * Helper function to shell out application commands.
+ * @returns {String} The result of the cmd minus the newline character.
+ */
+const execRun = (cmd: string) => {
+  return new Promise((resolve, reject) => {
+    exec(cmd, (error, stdout) => {
+      if (error) {
+        reject(error);
+      } else {
+        resolve(stdout);
+      }
+    })
+  })
+}
+
 export const checkApplicationInPath = async () => {
   try {
-    await commandExists(Application);
+    if ('darwin' === process.platform) {
+      await execRun(`osascript -e 'tell application "Finder" to get version of application file id "${ApplicationRef}"'`);
+    } else {
+      await commandExists(Application);
+    }
   } catch (e) {
     console.log('\n', logSymbols.error, chalk.white.underline('StreamDeck Application not found in PATH'), '\n');
     console.log(' >> add the binary directory to the PATH and restart the terminal\n');

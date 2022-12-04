@@ -6,11 +6,15 @@ export const platform: 'win' | 'mac' = process.platform === 'win32' ? 'win' : 'm
 export const Paths = {
     plugins: {
         win: `${process.env.APPDATA}/Elgato/StreamDeck/Plugins`,
-        mac: '~/Library/Application Support/Elgato/StreamDeck/Plugins'
+        mac: '~/Library/Application Support/com.elgato.StreamDeck/Plugins'
     },
     application: {
         win: 'StreamDeck.exe',
-        mac: 'StreamDeck'
+        mac: 'Elgato Stream Deck'
+    },
+    applicationRef: {
+        win: '',
+        mac: 'com.elgato.StreamDeck'
     },
     debugPlugin: {
         win: 'debug-plugin-win.exe',
@@ -33,6 +37,7 @@ export const debugPlugin = Paths.debugPlugin[platform];
 export const debugPluginBinary = join(dir, debugPlugin);
 
 export const Application = Paths.application[platform];
+export const ApplicationRef = Paths.applicationRef[platform];
 
 export const PluginPath = Paths.plugins[platform];
 
