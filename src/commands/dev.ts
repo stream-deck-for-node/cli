@@ -65,7 +65,7 @@ export default class DevCommand implements CliCommand {
                 manifest.CodePathMac = undefined;
             }
 
-            const uuid = manifest["uuid"].toString();
+            const uuid = manifest["UUID"].toString();
             await fs.copy(debugPluginBinary, join(cwd, debugPlugin));
             await updateManifest(cwd, manifest);
             await reloadStreamDeckApplication(uuid);

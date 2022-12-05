@@ -59,8 +59,12 @@ export const killStreamDeckApp = async (uuid: string) => {
 };
 
 export const launchStreamDeckApp = async () => {
-  const child = spawn(Application, { detached: true, stdio: 'inherit' });
-  child.unref();
+  if ('darwin' === process.platform) {
+    await execRun(`open -a "${Application}"`);
+  } else {
+    const child = spawn(ApplicationRef, { detached: true, stdio: 'inherit' });
+    child.unref();
+  }
 };
 
 export const reloadStreamDeckApplication = async (uuid: string) => {
