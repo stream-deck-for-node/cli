@@ -14,7 +14,7 @@ npm i -g @stream-deck-for-node/cli
 ## Supported OS
 
 - [x] windows
-- [ ] mac `(test needed)`
+- [x] mac
 
 ```shell
 Stream Deck Node.js CLI
