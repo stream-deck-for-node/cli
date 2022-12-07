@@ -9,14 +9,15 @@
     "start": "npx ts-node ./src/index.ts -debug {{uuid}}",
     "build": "npm run build:ts && npm run build:bin",
     "build:ts": "npx tsc -outDir dist",
-    "build:bin": "npx pkg package.json --compress GZip -o plugin/{{uuid}}.exe"
+    "build:bin": "npx pkg package.json --compress GZip -o plugin/{{uuid}}"
   },
   "dependencies": {
     "@stream-deck-for-node/sdk": "^1.0.14"
   },
   "pkg": {
     "targets": [
-      "node16-windows-x64"
+      "node16-windows-x64",
+      "node16-macos-arm64"
     ]
   },
   "devDependencies": {
