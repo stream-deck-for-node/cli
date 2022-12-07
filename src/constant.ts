@@ -11,7 +11,7 @@ export const Paths = {
   },
   application: {
     win: 'StreamDeck.exe',
-    mac: 'Stream Deck'
+    mac: 'Elgato Stream Deck'
   },
   applicationRef: {
     win: '',
