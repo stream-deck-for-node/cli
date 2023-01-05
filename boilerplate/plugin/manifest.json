@@ -13,12 +13,16 @@
     {
       "Platform": "windows",
       "MinimumVersion": "10"
+    },
+    {
+      "Platform": "mac",
+      "MinimumVersion": "10"
     }
   ],
   "Category": "{{category}}",
   "CategoryIcon": "icons/category",
-  "CodePathWin": "{{uuid}}.exe",
-  "CodePathMac": "{{uuid}}",
+  "CodePathWin": "{{uuid}}-win-x64.exe",
+  "CodePathMac": "{{uuid}}-macos-arm64",
   "Actions": [
     {
       "Icon": "icons/actionIcon",
