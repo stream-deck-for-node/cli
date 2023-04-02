@@ -233,3 +233,4 @@ yarn.lock
 
 !debug-plugin/dist
 !debug-plugin/dist/*
+elgato-bin/
