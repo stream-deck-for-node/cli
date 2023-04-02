@@ -10,7 +10,7 @@
   },
   "pkg": {
     "targets": [
-      "node16-windows-x64"
+      {{{targets}}}
     ]
   },
   "dependencies": {

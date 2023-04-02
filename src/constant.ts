@@ -14,7 +14,7 @@ export const Paths = {
     mac: 'Elgato Stream Deck'
   },
   applicationRef: {
-    win: '',
+    win: 'StreamDeck.exe',
     mac: 'com.elgato.StreamDeck'
   },
   debugPlugin: {
@@ -24,6 +24,10 @@ export const Paths = {
   distributionTool: {
     win: 'DistributionTool.exe',
     mac: 'DistributionTool'
+  },
+  elgatoDistributionToolDownload: {
+    win: 'https://developer.elgato.com/documentation/stream-deck/distributiontool/DistributionToolWindows.zip',
+    mac: 'https://developer.elgato.com/documentation/stream-deck/distributiontool/DistributionToolMac.zip'
   }
 };
 
@@ -47,6 +51,9 @@ export const ApplicationRef = Paths.applicationRef[platform];
 export const PluginPath = Paths.plugins[platform];
 
 export const DistributionTool = Paths.distributionTool[platform];
+
+export const ElgatoDistributionToolDownload =
+  Paths.elgatoDistributionToolDownload[platform];
 
 export const DEV_PLUGIN_RELEASE =
   'https://api.github.com/repos/stream-deck-for-node/development-plugin/releases/latest';
