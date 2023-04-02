@@ -24,14 +24,11 @@
     "elgato"
   ],
   "files": [
-    "src",
     "dist",
-    "elgato-bin",
     "boilerplate",
     "package.json",
     "README.md",
-    "LICENSE",
-    "tsconfig.json"
+    "LICENSE"
   ],
   "homepage": "https://stream-deck-for-node.netlify.app/#/cli",
   "repository": "github:stream-deck-for-node-js/cli",
