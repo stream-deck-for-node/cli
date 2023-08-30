@@ -194,7 +194,7 @@ export default class CreateCommand implements CliCommand {
     spinner.succeed('Boilerplate generated');
 
     spinner.start('Installing node modules...');
-    await execAsync(`${pm} i`, { cwd: base });
+    await execAsync(`${pm} install`, { cwd: base });
 
     spinner.succeed('Node modules installed');
     spinner.start('Building the project...');
