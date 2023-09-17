@@ -67,12 +67,6 @@ export default class DevCommand implements CliCommand {
     let cwd = process.cwd();
     let manifest = await parseManifest(cwd);
 
-    if (!manifest) {
-      // allows command's execution in the main project directory
-      cwd = join(cwd, 'plugin');
-      manifest = await parseManifest(cwd);
-    }
-
     if (manifest) {
       await this.downloadDebugPlugin();
 

@@ -100,13 +100,15 @@ export default class CreateCommand implements CliCommand {
       return console.log(logSymbols.error, 'Directory not empty');
     }
 
-    await fs.mkdir(base + 'plugin/icons', { recursive: true });
-    await fs.ensureDir(base + 'plugin/pi');
+    const pluginDir = join(base, `${choices.uuid}.sdPlugin`);
+
+    await fs.mkdir(`${pluginDir}/icons`, { recursive: true });
+    await fs.ensureDir(`${pluginDir}/pi`);
     await fs.ensureDir(base + 'src/actions');
 
     await fs.copy(
       join(__dirname, '../../boilerplate/plugin/pi'),
-      join(base, 'plugin/pi'),
+      pluginDir,
       {
         recursive: true
       }
@@ -121,12 +123,12 @@ export default class CreateCommand implements CliCommand {
       join(__dirname, '../../boilerplate/plugin/pi/index.html')
     );
     await fs.writeFile(
-      base + '/plugin/pi/index.html',
+      `${pluginDir}/pi/index.html`,
       Mustache.render(templatePi.toString(), choices)
     );
 
     await fs.writeFile(
-      base + '/plugin/manifest.json',
+      `${pluginDir}/manifest.json`,
       JSON.stringify(
         createManifest({
           name: choices.name,
@@ -143,7 +145,7 @@ export default class CreateCommand implements CliCommand {
 
     await fs.copy(
       join(__dirname, '../../boilerplate/plugin/icons'),
-      join(base, 'plugin/icons'),
+      `${pluginDir}/icons`,
       {
         recursive: true
       }
@@ -202,7 +204,7 @@ export default class CreateCommand implements CliCommand {
     spinner.stop();
 
     await new LinkCommand().execute({
-      cwd: join(base, 'plugin')
+      cwd: join(process.cwd(), pluginDir),
     });
 
     console.log('\n', logSymbols.success, 'Project created', '\n');
