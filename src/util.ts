@@ -25,7 +25,7 @@ export const parseManifest = async (
 ): Promise<PluginManifest | undefined> => {
   try {
     return await fs.readJSON(
-      join(cwd, nested ? 'plugin' : '', 'manifest.json')
+      join(cwd, 'manifest.json')
     );
   } catch (e) {
     if (!nested) {
