@@ -1,3 +1,10 @@
+# [Elgato released an official cli](https://github.com/elgatosf/cli)
+> Now they support Node.js plugins, hot reload and more.
+> 
+> _This project is now archived_
+
+------
+
 # @stream-deck-for-node/cli
 
 CLI utility to create / link / unlink / develop / package
